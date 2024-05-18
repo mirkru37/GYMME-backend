@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: gymme_backend_development
+
+
+test:
+  <<: *default
+  database: gymme_backend_test
+
+production:
+  <<: *default
+  database: gymme_backend_production
+  username: gymme_backend
+  password: <%= ENV["GYMME_BACKEND_DATABASE_PASSWORD"] %>

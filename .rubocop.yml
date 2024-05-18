@@ -1,0 +1,7 @@
+AllCops:
+  NewCops: enable
+  Exclude: ['db/*', 'bin/*', 'config/*']
+  TargetRubyVersion: 3.2.2
+
+Metrics/LineLength:
+  Max: 120
