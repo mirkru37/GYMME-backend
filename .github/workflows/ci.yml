@@ -17,14 +17,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Postgres
-        uses: ./.github/workflows/common/postgres.yml
+        uses: ./.github/workflows/postgres.yml
         with:
           postgres-db-name: postgres
           postgres-user: postgres
           postgres-password: password
 
       - name: Setup Ruby
-        uses: ./.github/workflows/common/ruby.yml
+        uses: ./.github/workflows/ruby.yml
 
       - name: Precompile assets (if needed)
         run: |
@@ -45,13 +45,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Postgres
-        uses: ./.github/workflows/common/postgres.yml
+        uses: ./.github/workflows/postgres.yml
         with:
           postgres-db-name: postgres
           postgres-user: postgres
           postgres-password: password
       - name: Setup Ruby
-        uses: ./.github/workflows/common/ruby.yml
+        uses: ./.github/workflows/ruby.yml
       - name: Download app artifact
         uses: actions/download-artifact@v4
         with:
@@ -70,13 +70,13 @@ jobs:
         uses: actions/checkout@v3
       
       - name: Setup Postgres
-        uses: ./.github/workflows/common/postgres.yml
+        uses: ./.github/workflows/postgres.yml
         with:
           postgres-db-name: postgres
           postgres-user: postgres
           postgres-password: password
       - name: Setup Ruby
-        uses: ./.github/workflows/common/ruby.yml
+        uses: ./.github/workflows/ruby.yml
       - name: Download app artifact
         uses: actions/download-artifact@v4
         with:
@@ -95,13 +95,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Postgres
-        uses: ./.github/workflows/common/postgres.yml
+        uses: ./.github/workflows/postgres.yml
         with:
           postgres-db-name: postgres
           postgres-user: postgres
           postgres-password: password
       - name: Setup Ruby
-        uses: ./.github/workflows/common/ruby.yml
+        uses: ./.github/workflows/ruby.yml
       - name: Download app artifact
         uses: actions/download-artifact@v4
         with:
@@ -120,13 +120,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup Postgres
-        uses: ./.github/workflows/common/postgres.yml
+        uses: ./.github/workflows/postgres.yml
         with:
           postgres-db-name: postgres
           postgres-user: postgres
           postgres-password: password
       - name: Setup Ruby
-        uses: ./.github/workflows/common/ruby.yml
+        uses: ./.github/workflows/ruby.yml
       - name: Download app artifact
         uses: actions/download-artifact@v4
         with:
