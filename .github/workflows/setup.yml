@@ -12,6 +12,8 @@ jobs:
   setup-app:
     name: Setup Rails Application
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
 
     steps:
       - name: Setup Postgres
