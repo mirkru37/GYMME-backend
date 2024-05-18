@@ -23,10 +23,10 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t gymme_backend:${{ github.sha }} -f app.Dockerfile .
-          docker save gymme_backend:${{ github.sha }} | gzip > gymme-backend_${{ github.sha }}.tar.gz
+          docker save gymme_backend:${{ github.sha }} | gzip > ./gymme-backend_${{ github.sha }}.tar.gz
       - name: Upload Docker image artifact
         uses: actions/upload-artifact@v4
         with:
           name: gymme-backend-docker-image
-          path: gymme_backend_${{ github.sha }}.tar.gz
+          path: ./gymme_backend_${{ github.sha }}.tar.gz
 
