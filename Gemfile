@@ -16,8 +16,11 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do
+  gem 'brakeman'
+  gem 'bullet'
   gem 'debug', platforms: %i[mri windows]
   gem 'rspec-rails', '~> 6.1.0'
+  gem 'rubocop', '~> 1.63'
 end
 
 group :test do
@@ -25,8 +28,5 @@ group :test do
 end
 
 group :development do
-  gem 'brakeman'
-  gem 'bullet'
-  gem 'rubocop', '~> 1.63'
   gem 'web-console'
 end
