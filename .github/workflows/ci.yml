@@ -13,6 +13,9 @@ jobs:
       RAILS_ENV: test
 
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
       - name: Setup Postgres
         uses: ./.github/workflows/common/postgres.yml
         with:
@@ -38,6 +41,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup-app
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
       - name: Setup Postgres
         uses: ./.github/workflows/common/postgres.yml
         with:
@@ -60,6 +66,9 @@ jobs:
     needs: setup-app
 
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      
       - name: Setup Postgres
         uses: ./.github/workflows/common/postgres.yml
         with:
@@ -82,6 +91,9 @@ jobs:
     needs: setup-app
 
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
       - name: Setup Postgres
         uses: ./.github/workflows/common/postgres.yml
         with:
@@ -104,6 +116,9 @@ jobs:
     needs: setup-app
 
     steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
       - name: Setup Postgres
         uses: ./.github/workflows/common/postgres.yml
         with:
