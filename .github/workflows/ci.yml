@@ -1,9 +1,6 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - '**'
   pull_request:
     branches:
       - '**'
@@ -31,9 +28,6 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-
-      - name: Set up Ruby
-        run: echo "${{ github.base_ref }}"
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
