@@ -27,7 +27,7 @@ jobs:
 
     steps:
       - name: Echo
-        run: echo "Base ref ${{ github.ref }}"
+        run: echo "Base ref ${{ base.ref }}"
       - name: Echo
         run: echo "Base ref ${{ github.event }}"
       - name: Check out repository
