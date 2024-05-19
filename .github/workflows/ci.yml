@@ -27,8 +27,6 @@ jobs:
 
     steps:
       - name: Echo
-        run: echo "Base ref ${{ base.ref }}"
-      - name: Echo
         run: echo "Base ref ${{ github.ref }}"
       - name: Echo
         run: echo "Base ref ${{ github.base_ref }}"
