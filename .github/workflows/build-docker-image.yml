@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: echo
+        run: echo "Building Docker image... ${{ github.ref }}"
       - name: Checkout code
         uses: actions/checkout@v4
 
