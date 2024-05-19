@@ -22,7 +22,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build --no-cache -t gymme_backend:${{ github.sha }} -f app.Dockerfile .
+          docker build -t gymme_backend:${{ github.sha }} -f app.Dockerfile .
           docker save gymme_backend:${{ github.sha }} | gzip > gymme_backend_${{ github.sha }}.tar.gz
 
       - name: Upload Docker image artifact
