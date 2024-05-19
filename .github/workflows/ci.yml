@@ -26,8 +26,6 @@ jobs:
           --health-retries 5
 
     steps:
-      - name: LS
-        run: echo ${{ github.event.pull_request.base.ref }}
       - name: Check out repository
         uses: actions/checkout@v3
 
@@ -48,7 +46,7 @@ jobs:
     name: Check project coverage
     runs-on: ubuntu-latest
     needs: unit-tests
-    if: ${{ github.event.pull_request.base.ref == 'main' }}
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
 
     steps:
       - name: Check out repository
