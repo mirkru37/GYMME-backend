@@ -1,4 +1,4 @@
 AllCops:
   NewCops: enable
-  Exclude: ['db/*', 'bin/*', 'config/**/*', 'vendor/**/*.rb']
+  Exclude: ['db/*', 'bin/*', 'config/**/*', 'vendor/**/*']
   TargetRubyVersion: 3.2.2
