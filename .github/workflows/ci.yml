@@ -29,7 +29,9 @@ jobs:
       - name: Echo
         run: echo "Base ref ${{ base.ref }}"
       - name: Echo
-        run: echo "Base ref ${{ github.event }}"
+        run: echo "Base ref ${{ github.ref }}"
+      - name: Echo
+        run: echo "Base ref ${{ github.base_ref }}"
       - name: Check out repository
         uses: actions/checkout@v3
 
