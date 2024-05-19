@@ -6,58 +6,9 @@ on:
       - '**'
 
 jobs:
-  setup-app:
-    name: Setup Rails Application
-    runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:latest
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: postgres
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    
-    env:
-      RAILS_ENV: test
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-      
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 3.2.2
-          bundler-cache: true
-
-      - name: Install dependencies
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y libpq-dev
-          bundle install --jobs 4 --retry 3
-
-      - name: Precompile assets (if needed)
-        run: |
-          bin/rails assets:precompile
-
-      - name: Save setup artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: gymme-backend
-          path: .
-
   unit-tests:
     name: Run Unit Tests
     runs-on: ubuntu-latest
-    needs: setup-app
 
     services:
       postgres:
@@ -89,7 +40,6 @@ jobs:
   rubocop:
     name: Run RuboCop
     runs-on: ubuntu-latest
-    needs: setup-app
 
     services:
       postgres:
@@ -109,13 +59,17 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
       - name: Run RuboCop
         run: bundle exec rubocop
 
   brakeman:
     name: Run Brakeman
     runs-on: ubuntu-latest
-    needs: setup-app
 
     services:
       postgres:
@@ -135,13 +89,17 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
       - name: Run Brakeman
         run: bundle exec brakeman
 
   bullet:
     name: Run Bullet
     runs-on: ubuntu-latest
-    needs: setup-app
 
     services:
       postgres:
@@ -161,5 +119,10 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
       - name: Run Bullet
         run: bundle exec rails runner 'Bullet.enable = true; Bullet.start_request; Bullet.end_request; Bullet::Detector::UnusedEagerLoading.check_unused_preload_associations'
