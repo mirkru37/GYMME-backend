@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 
 ruby '3.2.2'
 
+gem 'aws-sdk-secretsmanager'
 gem 'bootsnap', require: false
+gem 'config'
 gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'pg', '~> 1.1'
