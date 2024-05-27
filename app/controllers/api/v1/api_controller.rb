@@ -14,7 +14,7 @@ module Api
         return if tenant.present?
 
         render_not_found
-        Rails.logger.warn(message: 'Undefined api-key call', api_key: api_key)
+        Rails.logger.warn(message: 'Undefined api-key call', api_key:)
       end
 
       def render_not_found
