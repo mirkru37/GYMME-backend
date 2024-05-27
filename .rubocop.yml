@@ -1,4 +1,10 @@
 AllCops:
   NewCops: enable
-  Exclude: ['db/*', 'bin/*', 'config/**/*', 'vendor/**/*']
+  Exclude: ['db/**/*', 'bin/*', 'config/**/*', 'vendor/**/*']
   TargetRubyVersion: 3.2.2
+
+Style/LambdaCall:
+  EnforcedStyle: braces
+
+Style/FrozenStringLiteralComment:
+  Exclude: ['app/views/**/*']

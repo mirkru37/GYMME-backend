@@ -20,6 +20,14 @@ module Api
       def render_not_found
         render json: { error: 'Not Found' }, status: :not_found
       end
+
+      def render_bad_request(errors)
+        render json: { errors: }, status: :bad_request
+      end
+
+      def render_unauthorized
+        render json: { error: 'Unauthorized' }, status: :unauthorized
+      end
     end
   end
 end
