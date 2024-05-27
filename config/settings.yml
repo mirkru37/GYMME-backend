@@ -1,0 +1,4 @@
+api_keys:
+  secret_storage_name: nonProd/Api-keys
+
+jwt_secret_storage: nonProd/Common-secrets
