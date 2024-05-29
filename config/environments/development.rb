@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/integer/time'
+require 'shrine/storage/file_system'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -64,7 +65,7 @@ Rails.application.configure do
 
   config.after_initialize do
     Bullet.enable = true
-    Bullet.sentry = true
+    Bullet.sentry = false
     Bullet.alert = true
     Bullet.bullet_logger = true
     Bullet.console = true
@@ -73,3 +74,8 @@ Rails.application.configure do
     Bullet.skip_html_injection = false
   end
 end
+
+Shrine.storages = {
+  cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"), # temporary
+  store: Shrine::Storage::FileSystem.new("public", prefix: "uploads"),       # permanent
+}

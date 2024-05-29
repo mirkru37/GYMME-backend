@@ -10,11 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_26_145610) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_28_152307) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "blacklist_tokens", primary_key: "token", id: :string, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "exercise_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "exercise_id"
+    t.jsonb "attachment_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_exercise_attachments_on_exercise_id"
+  end
+
+  create_table "exercises", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "is_public"
+    t.boolean "is_visible", default: true
+    t.string "name"
+    t.text "instructions"
+    t.uuid "primary_muscle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.uuid "user_id"
+    t.jsonb "video_data"
+    t.index ["primary_muscle_id"], name: "index_exercises_on_primary_muscle_id"
+    t.index ["user_id"], name: "index_exercises_on_user_id"
+  end
+
+  create_table "exercises_muscles", id: false, force: :cascade do |t|
+    t.uuid "exercise_id"
+    t.uuid "muscle_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_exercises_muscles_on_exercise_id"
+    t.index ["muscle_id"], name: "index_exercises_muscles_on_muscle_id"
+  end
+
+  create_table "muscles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,4 +67,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_26_145610) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "exercise_attachments", "exercises"
 end

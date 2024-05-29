@@ -6,6 +6,8 @@ module Api
     class ApiController < ActionController::API
       before_action :authenticate_api_key
 
+      rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
       private
 
       def authenticate_api_key
@@ -15,6 +17,15 @@ module Api
 
         render_not_found
         Rails.logger.warn(message: 'Undefined api-key call', api_key:)
+      end
+
+      def authorize_user
+        access_token = request.headers['Authorization'].split.last
+        payload = JwtAuthClient.validate_access_token(access_token)
+        return render_unauthorized unless payload
+
+        @current_user = User.find_by(id: payload['user_id'])
+        render_unauthorized unless @current_user
       end
 
       def render_not_found
