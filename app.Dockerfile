@@ -12,7 +12,10 @@ ARG RAILS_ENV=production
 # Set production environment
 ENV RAILS_ENV=${RAILS_ENV} \
     BUNDLE_DEPLOYMENT="1" \
-    BUNDLE_PATH="/usr/local/bundle"
+    BUNDLE_PATH="/usr/local/bundle" \
+    AWS_REGION="us-east-1"
+    # AWS_ACCESS_KEY_ID= \
+    # AWS_SECRET_ACCESS_KEY=\
 
 RUN if [ "$RAILS_ENV" = "production" ]; then \
     BUNDLE_WITHOUT='development test'; \
