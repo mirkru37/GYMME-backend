@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       namespace :sessions do
         post :refresh
       end
+      resources :workouts, only: %i[create index show destroy]
+      resources :exercise_sets, only: %i[index]
     end
   end
 end
