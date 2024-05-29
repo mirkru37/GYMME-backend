@@ -75,6 +75,8 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
+    addressable (2.8.6)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.2)
     aws-eventstream (1.3.0)
     aws-partitions (1.898.0)
@@ -104,6 +106,7 @@ GEM
     config (5.4.0)
       deep_merge (~> 1.2, >= 1.2.1)
     connection_pool (2.4.1)
+    content_disposition (1.0.0)
     crass (1.0.6)
     date (3.3.4)
     debug (1.9.2)
@@ -112,6 +115,8 @@ GEM
     deep_merge (1.2.2)
     diff-lcs (1.5.1)
     docile (1.4.0)
+    down (5.4.2)
+      addressable (~> 2.8)
     drb (2.2.1)
     dry-configurable (1.1.0)
       dry-core (~> 1.0, < 2)
@@ -201,6 +206,7 @@ GEM
     pg (1.5.6)
     psych (5.1.2)
       stringio
+    public_suffix (5.0.5)
     puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
@@ -281,6 +287,9 @@ GEM
     rubocop-ast (1.31.3)
       parser (>= 3.3.1.0)
     ruby-progressbar (1.13.0)
+    shrine (3.6.0)
+      content_disposition (~> 1.0)
+      down (~> 5.1)
     simplecov (0.19.1)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -340,6 +349,7 @@ DEPENDENCIES
   rails (~> 7.1.3, >= 7.1.3.2)
   rspec-rails (~> 6.1.0)
   rubocop (~> 1.63)
+  shrine (~> 3.0)
   simplecov
   sprockets-rails
   stimulus-rails
