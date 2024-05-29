@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/integer/time'
+require 'shrine/storage/s3'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -79,3 +80,15 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
+
+s3_options = {
+  bucket:            "exercise-attachments", # required
+  region:            "us-east-1", # required
+  access_key_id:     ENV["AWS_ACCESS_KEY_ID"], # required
+  secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"], # required
+}
+
+Shrine.storages = {
+  cache: Shrine::Storage::S3.new(prefix: "cache", **s3_options), # temporary
+  store: Shrine::Storage::S3.new(**s3_options),                  # permanent
+}
