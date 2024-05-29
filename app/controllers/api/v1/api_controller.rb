@@ -20,6 +20,8 @@ module Api
       end
 
       def authorize_user
+        return render_unauthorized unless request.headers['Authorization']
+
         access_token = request.headers['Authorization'].split.last
         payload = JwtAuthClient.validate_access_token(access_token)
         return render_unauthorized unless payload

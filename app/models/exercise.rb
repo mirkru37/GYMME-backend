@@ -9,6 +9,7 @@ class Exercise < ApplicationRecord
   has_and_belongs_to_many :secondary_muscles,
                           class_name: 'Muscle', join_table: 'exercises_muscles'
   has_many :exercise_attachments, dependent: :destroy
+  has_many :exercise_sets, dependent: :destroy
   accepts_nested_attributes_for :exercise_attachments, allow_destroy: true
 
   attribute :is_public, :boolean, default: false
