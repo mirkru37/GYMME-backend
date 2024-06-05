@@ -32,13 +32,36 @@ jobs:
           path: gymme_backend_${{ github.sha }}.tar.gz
     
   deploy:
-    name: Deploy to TBD
+    name: Deploy to AWS
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref_name  == 'main'
+    # if: github.ref_name  == 'main'
 
     steps:
-      - name: Install dependencies
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Download Docker image artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: gymme-backend-docker-image
+          path: gymme_backend_${{ github.sha }}.tar.gz
+
+      - name: Load Docker image
         run: |
-          echo "TBD..."
+          gunzip -c gymme_backend_${{ github.sha }}.tar.gz
+      
+      - name: Build and push Docker image
+        run: |
+          docker tag gymme_backend_${{ github.sha }} mirkru36/gymme:latest
+          docker push mirkru36/gymme:latest
 
